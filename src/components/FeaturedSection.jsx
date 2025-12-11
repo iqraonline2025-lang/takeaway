@@ -11,7 +11,7 @@ const FeatureCard = ({ item }) => {
 
   const handleAddToCart = () => {
     if (!user) return navigate('/auth');
-    addToCart(item);
+    addToCart(item.id);
   };
 
   const handleImageClick = () => {
@@ -19,7 +19,7 @@ const FeatureCard = ({ item }) => {
       navigate('/auth');
       return;
     }
-    addToCart(item);
+    addToCart(item.id);
   };
 
   return (

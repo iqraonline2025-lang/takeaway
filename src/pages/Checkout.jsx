@@ -146,12 +146,32 @@ function CheckoutForm() {
   };
 
   return (
-    <div className="flex min-h-screen bg-red-50">
-      {/* Main Form */}
-      <div className="flex-1 p-6">
+    <div className="flex min-h-screen bg-red-50 items-center justify-center p-4">
+      <div className="w-full max-w-2xl bg-white rounded-xl shadow-2xl p-8">
+        <h2 className="text-3xl font-bold text-red-800 text-center mb-6">Checkout</h2>
+
+        {/* Order Summary */}
+        <div className="mb-8 p-4 bg-red-50 rounded-lg">
+          <h3 className="text-xl font-semibold text-red-800 mb-4">Order Summary</h3>
+          <div className="space-y-2">
+            {itemsForPayment.map((item) => (
+              <div key={item.id} className="flex justify-between items-center">
+                <span className="text-red-700">{item.name} (x{item.quantity})</span>
+                <span className="font-semibold text-red-800">${(item.price * item.quantity).toFixed(2)}</span>
+              </div>
+            ))}
+            <div className="border-t border-red-200 pt-2 mt-4">
+              <div className="flex justify-between items-center text-lg font-bold text-red-800">
+                <span>Total:</span>
+                <span>${totalPrice.toFixed(2)}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <form
           onSubmit={handleSubmit}
-          className="space-y-6 max-w-2xl mx-auto"
+          className="space-y-6"
         >
           {errorMsg && <p className="text-red-700 text-center font-semibold">{errorMsg}</p>}
 
@@ -206,16 +226,16 @@ function CheckoutForm() {
           </div>
 
           {/* Card Input */}
-          <div className="border border-red-200 p-3 rounded bg-white">
+          <div className="border border-red-200 p-4 rounded bg-gray-50">
             <CardElement options={{ hidePostalCode: true }} />
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-xl transition text-lg disabled:opacity-60 shadow-md"
+            className="w-full bg-red-600 hover:bg-red-700 text-white py-4 rounded-xl transition text-lg disabled:opacity-60 shadow-md font-semibold"
           >
-            {loading ? "Processing..." : "Pay Now"}
+            {loading ? "Processing..." : `Pay $${totalPrice.toFixed(2)}`}
           </button>
         </form>
       </div>
