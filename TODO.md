@@ -1,0 +1,4 @@
+- [ ] Update useCart.jsx to include isAdmin state and check against admin_users table
+- [ ] Update Navbar.jsx to show Dashboard button only for admins
+- [ ] Update FeaturedSection.jsx: Modify handleImageClick to add to cart and open sidebar without navigating to checkout
+- [ ] Update Checkout.jsx: Remove the sidebar from the checkout page
